@@ -35,7 +35,7 @@
       </div>
       <div class="col-sm-12 mt-2">
         <label for="formFile">Upload Lampiran Gambar</label>
-        <input class="form-control" type="file" id="formFile" accept="image/*">
+        <input class="form-control" type="file" name="foto" id="formFile" accept="image/*">
         <hr>
       </div>
       <div class="col-sm-6">

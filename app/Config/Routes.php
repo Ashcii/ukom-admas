@@ -35,6 +35,7 @@ $routes->get('/logout', 'MasyarakatLogin::logout');
 
 $routes->get('/', 'Pengaduan::index');
 $routes->get('/buat-pengaduan', 'Pengaduan::buatPengaduan', ['filter' => 'masyarakat']);
+$routes->post('/buat-pengaduan/tambah', 'Pengaduan::tambahPengaduan', ['filter' => 'masyarakat']);
 
 /*
  * --------------------------------------------------------------------
