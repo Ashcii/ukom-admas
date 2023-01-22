@@ -2,6 +2,11 @@
 <?= $this->section('content'); ?>
 <div class="container">
   <div class="row mt-2">
+    <?php if (session()->getFlashData('pesan')) : ?>
+      <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('pesan') ?>
+      </div>
+    <?php endif ?>
     <h4 style="color:#575860;">DAFTAR PENGADUAN YANG DIBUAT</h4>
     <hr>
   </div>
@@ -80,12 +85,15 @@
           <th>Status</th>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>24-11-2022</td>
-            <td>Ada jalan berlubang dijalan sana</td>
-            <td>Selesai</td>
-          </tr>
+          <?php $no = 1 ?>
+          <?php foreach ($pengaduan as $row) : ?>
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><?= date('d-M-Y', strtotime($row['tgl_pengaduan'])) ?></td>
+              <td><a href=""><?= $row['isi_laporan'] ?></a></td>
+              <td><?= $row['status'] ?></td>
+            </tr>
+          <?php endforeach ?>
         </tbody>
       </table>
     </div>

@@ -21,7 +21,12 @@
     </div>
   </div>
   <div class="row">
-    <form action="/buat-pengaduan/tambah" method="POST">
+    <?php if (validation_errors()) : ?>
+      <div class="alert alert-danger" role="alert">
+        <?= validation_list_errors() ?>
+      </div>
+    <?php endif ?>
+    <form action="/buat-pengaduan/tambah" method="POST" enctype="multipart/form-data">
       <div class="col-sm-12">
         <label>Apa Keluhan Anda?</label>
         <textarea name="laporan" class="form-control" cols="30" rows="7" placeholder="Ketik isi laporan anda..."></textarea>
