@@ -11,6 +11,15 @@ class ModelPengaduan extends Model
     protected $primaryKey       = 'id_pengaduan';
     protected $allowedFields    = ['tgl_pengaduan', 'jam_pengaduan', 'nik', 'judul_laporan', 'isi_laporan', 'lokasi_kejadian', 'foto', 'status'];
 
+    public function getPengaduanAll()
+    {
+        $builder = $this->db->table('pengaduan');
+        $builder->select();
+        $builder->join('masyarakat', 'masyarakat.nik = pengaduan.nik');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     public function getPengaduan($id)
     {
         $builder = $this->db->table('pengaduan');

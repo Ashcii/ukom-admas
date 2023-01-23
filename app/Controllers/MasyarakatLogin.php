@@ -4,15 +4,18 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelMasyarakat;
+use App\Models\ModelPetugas;
 
 class MasyarakatLogin extends BaseController
 {
     protected $modelMasyarakat;
+    protected $modelPetugas;
     protected $helpers = ['form'];
 
     public function __construct()
     {
         $this->modelMasyarakat = new ModelMasyarakat();
+        $this->modelPetugas = new ModelPetugas();
     }
 
     public function login()
@@ -29,8 +32,9 @@ class MasyarakatLogin extends BaseController
     {
         $data = $this->request->getPost();
         $user = $this->modelMasyarakat->where('username', $data['username'])->first();
+        $petugas = $this->modelPetugas->where('username', $data['username'])->first();
 
-        // cek apakah username ditemukan
+        // cek apakah username masyarakat ditemukan
         if ($user) {
             // cek password
             if ($user['password'] != md5($data['password'])) {
@@ -48,8 +52,29 @@ class MasyarakatLogin extends BaseController
                 session()->set($sessLogin);
                 return redirect()->to('/');
             }
+        }
+
+        // cek apakah username petugas ditemukan
+        if ($petugas) {
+            // cek password
+            if ($petugas['password'] != md5($data['password'])) {
+                session()->setFlashdata('error', 'Password salah!');
+                return redirect()->to('/login');
+            } else {
+                $sessLogin = [
+                    'isLogin' => true,
+                    'id_petugas' => $petugas['id_petugas'],
+                    'nama_petugas' => $petugas['nama_petugas'],
+                    'username' => $petugas['username'],
+                    'telp' => $petugas['telp'],
+                    'level' => $petugas['level']
+                ];
+
+                session()->set($sessLogin);
+                return redirect()->to('/');
+            }
         } else {
-            session()->setFlashdata('error', 'Username tidak ditemukan!');
+            session()->setFlashdata('error', 'Username atau password salah!');
             return redirect()->to('/login');
         }
     }

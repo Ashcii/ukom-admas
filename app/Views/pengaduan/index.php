@@ -7,7 +7,7 @@
         <?= session()->getFlashdata('pesan') ?>
       </div>
     <?php endif ?>
-    <h4 style="color:#575860;">DAFTAR PENGADUAN YANG DIBUAT</h4>
+    <h4 style="color:#575860;">DAFTAR PENGADUAN MASYARAKAT</h4>
     <hr>
   </div>
   <div class="row">
@@ -15,7 +15,7 @@
       <div class="card shadow">
         <div class="card-body text-white bg-primary">
           <h5>JUMLAH PENGADUAN</h5>
-          <p class="display-4">25</p>
+          <p class="display-4"><?= $pengaduan_total ?></p>
           <span>Selengkapnya</span>
         </div>
       </div>
@@ -24,7 +24,7 @@
       <div class="card shaow">
         <div class="card-body text-white bg-warning">
           <h5>BELUM DITANGANI</h5>
-          <p class="display-4">25</p>
+          <p class="display-4"><?= $belum_ditangani ?></p>
           <span>Selengkapnya</span>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="card shadow">
         <div class="card-body text-white bg-info">
           <h5>PENGADUAN DIPROSES</h5>
-          <p class="display-4">25</p>
+          <p class="display-4"><?= $pengaduan_proses ?></p>
           <span>Selengkapnya</span>
         </div>
       </div>
@@ -42,7 +42,7 @@
       <div class="card shadow">
         <div class="card-body text-white bg-success">
           <h5>PENGADUAN SELESAI</h5>
-          <p class="display-4">25</p>
+          <p class="display-4"><?= $pengaduan_selesai ?></p>
           <span>Selengkapnya</span>
         </div>
       </div>
@@ -80,6 +80,7 @@
       <table class="table table-striped" id="tb-pengaduan">
         <thead>
           <th>No</th>
+          <th>Pelapor</th>
           <th>Tanggal</th>
           <th>Isi Pengaduan</th>
           <th>Status</th>
@@ -89,9 +90,10 @@
           <?php foreach ($pengaduan as $row) : ?>
             <tr>
               <td><?= $no++ ?></td>
-              <td><?= date('d-M-Y', strtotime($row['tgl_pengaduan'])) ?></td>
-              <td><a href="/detail/<?= $row['id_pengaduan'] ?>" class="text-reset"><?= $row['judul_laporan'] ?></a></td>
-              <td><?= $row['status'] ?></td>
+              <td><?= $row->nama ?></td>
+              <td><?= date('d-M-Y', strtotime($row->tgl_pengaduan)) ?></td>
+              <td><a href="/detail/<?= $row->id_pengaduan ?>" class="text-reset"><?= $row->judul_laporan ?></a></td>
+              <td><?= $row->status ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>

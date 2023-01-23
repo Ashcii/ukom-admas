@@ -19,7 +19,11 @@ class Pengaduan extends BaseController
     {
         $data = [
             'title' => 'Pengaduan Masyarakat',
-            'pengaduan' => $this->modelPengaduan->findAll()
+            'pengaduan' => $this->modelPengaduan->getPengaduanAll(),
+            'pengaduan_total' => $this->modelPengaduan->countAllResults(),
+            'belum_ditangani' => $this->modelPengaduan->where('status', '0')->countAllResults(),
+            'pengaduan_proses' => $this->modelPengaduan->where('status', 'proses')->countAllResults(),
+            'pengaduan_selesai' => $this->modelPengaduan->where('status', 'selesai')->countAllResults()
         ];
 
         return view('/pengaduan/index', $data);
