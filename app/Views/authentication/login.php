@@ -25,17 +25,22 @@
               <?= session()->getFlashdata('error') ?>
             </div>
           <?php endif ?>
+          <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-success" role="alert">
+              <?= session()->getFlashdata('pesan') ?>
+            </div>
+          <?php endif ?>
           <form action="" method="POST">
             <div class="col-sm-12">
               <label>Username</label>
-              <input type="text" class="form-control" name="username">
+              <input type="text" class="form-control" placeholder="Masukkan username..." name="username">
             </div>
             <div class="col-sm-12 mt-2">
               <label>Password</label>
-              <input type="password" class="form-control" name="password">
+              <input type="password" class="form-control" placeholder="Masukkan password..." name="password">
             </div>
             <div class="d-flex justify-content-end mt-2">
-              <a href="">Register</a>
+              <a href="/daftar">Register</a>
             </div>
             <hr>
             <div class="col-sm-12 mt-3">

@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/login', 'MasyarakatLogin::login');
 $routes->post('/login', 'MasyarakatLogin::loginAuth');
+$routes->get('/daftar', 'MasyarakatLogin::daftar');
+$routes->post('/daftar', 'MasyarakatLogin::daftarAuth');
 $routes->get('/logout', 'MasyarakatLogin::logout');
 
 $routes->get('/', 'Pengaduan::index');
