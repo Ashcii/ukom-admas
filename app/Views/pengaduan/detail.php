@@ -1,13 +1,20 @@
 <?= $this->extend('layout/base'); ?>
 <?= $this->section('content'); ?>
-<div class="container mt-2">
+<div class="container mt-3">
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title"><?= $pengaduan->judul_laporan ?></h5>
-      <span class="text-muted"><?= longdate_indo($pengaduan->tgl_pengaduan) ?> <?= $pengaduan->jam_pengaduan ?> WIB</span>
-      <br>
-      <span class="lh-1 text-muted">Pengaduan dari <a href="" class="text-reset"><?= $pengaduan->nama ?></a></span>
-      <p class="lh-1 text-muted">Lokasi pengaduan : <?= $pengaduan->lokasi_kejadian ?></p>
+      <div class="row">
+        <div class="col-sm-10">
+          <h5 class="card-title"><?= $pengaduan->judul_laporan ?></h5>
+          <span class="text-muted"><?= longdate_indo($pengaduan->tgl_pengaduan) ?> <?= $pengaduan->jam_pengaduan ?> WIB</span>
+          <br>
+          <span class="lh-1 text-muted">Pengaduan dari <a href="" class="text-reset"><?= $pengaduan->nama ?></a></span>
+          <p class="lh-1 text-muted">Lokasi pengaduan : <?= $pengaduan->lokasi_kejadian ?></p>
+        </div>
+        <div class="col-sm-2 d-flex justify-content-end">
+          <button class="btn btn-warning" style="height: 40px;"><i class="fa-regular fa-pen-to-square"></i></button>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="row">
@@ -23,9 +30,10 @@
       </div>
     </div>
   </div>
+  <hr>
 
   <div class="card mt-2">
-    <div class="card-header">
+    <div class="card-header bg-primary text-white">
       <p>Status Pengerjaan</p>
     </div>
     <div class="card-body">
@@ -36,7 +44,7 @@
   </div>
 
   <div class="card mt-2">
-    <div class="card-header">
+    <div class="card-header bg-primary text-white">
       <p>Tanggapan</p>
     </div>
     <div class="card-body">
