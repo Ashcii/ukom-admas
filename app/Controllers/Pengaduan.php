@@ -8,7 +8,7 @@ use App\Models\ModelPengaduan;
 class Pengaduan extends BaseController
 {
     protected $modelPengaduan;
-    protected $helpers = ['form'];
+    protected $helpers = ['form', 'tgl_indo_helper'];
 
     public function __construct()
     {
@@ -23,6 +23,15 @@ class Pengaduan extends BaseController
         ];
 
         return view('/pengaduan/index', $data);
+    }
+
+    public function detailPengaduan($id)
+    {
+        $data = [
+            'title' => 'Detail Pengaduan',
+            'pengaduan' => $this->modelPengaduan->getPengaduan($id)
+        ];
+        return view('/pengaduan/detail', $data);
     }
 
     public function buatPengaduan()

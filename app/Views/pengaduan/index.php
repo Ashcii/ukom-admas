@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <div class="col-sm-3">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body text-white bg-primary">
           <h5>JUMLAH PENGADUAN</h5>
           <p class="display-4">25</p>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card">
+      <div class="card shaow">
         <div class="card-body text-white bg-warning">
           <h5>BELUM DITANGANI</h5>
           <p class="display-4">25</p>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body text-white bg-info">
           <h5>PENGADUAN DIPROSES</h5>
           <p class="display-4">25</p>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body text-white bg-success">
           <h5>PENGADUAN SELESAI</h5>
           <p class="display-4">25</p>
@@ -90,7 +90,7 @@
             <tr>
               <td><?= $no++ ?></td>
               <td><?= date('d-M-Y', strtotime($row['tgl_pengaduan'])) ?></td>
-              <td><a href=""><?= $row['isi_laporan'] ?></a></td>
+              <td><a href="/detail/<?= $row['id_pengaduan'] ?>"><?= $row['isi_laporan'] ?></a></td>
               <td><?= $row['status'] ?></td>
             </tr>
           <?php endforeach ?>
