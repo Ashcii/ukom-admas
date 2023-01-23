@@ -90,7 +90,7 @@
             <tr>
               <td><?= $no++ ?></td>
               <td><?= date('d-M-Y', strtotime($row['tgl_pengaduan'])) ?></td>
-              <td><a href="/detail/<?= $row['id_pengaduan'] ?>"><?= $row['isi_laporan'] ?></a></td>
+              <td><a href="/detail/<?= $row['id_pengaduan'] ?>" class="text-reset"><?= $row['judul_laporan'] ?></a></td>
               <td><?= $row['status'] ?></td>
             </tr>
           <?php endforeach ?>

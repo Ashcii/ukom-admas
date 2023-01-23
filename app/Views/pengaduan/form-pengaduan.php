@@ -28,7 +28,11 @@
     <?php endif ?>
     <form action="/buat-pengaduan/tambah" method="POST" enctype="multipart/form-data">
       <div class="col-sm-12">
-        <label>Apa Keluhan Anda?</label>
+        <label>Judul Laporan</label>
+        <input type="text" class="form-control" placeholder="Ketik judul laporan anda..." name="judul_laporan">
+      </div>
+      <div class="col-sm-12 mt-2">
+        <label>Isi Laporan</label>
         <textarea name="laporan" class="form-control" cols="30" rows="7" placeholder="Ketik isi laporan anda..."></textarea>
       </div>
       <div class="col-sm-12 mt-2">

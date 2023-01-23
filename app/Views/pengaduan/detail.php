@@ -4,7 +4,7 @@
   <div class="card">
     <div class="card-header">
       <h5 class="card-title"><?= $pengaduan->judul_laporan ?></h5>
-      <span class="text-muted"><?= longdate_indo($pengaduan->tgl_pengaduan) ?></span>
+      <span class="text-muted"><?= longdate_indo($pengaduan->tgl_pengaduan) ?> <?= $pengaduan->jam_pengaduan ?> WIB</span>
       <br>
       <span class="lh-1 text-muted">Pengaduan dari <a href="" class="text-reset"><?= $pengaduan->nama ?></a></span>
       <p class="lh-1 text-muted">Lokasi pengaduan : <?= $pengaduan->lokasi_kejadian ?></p>

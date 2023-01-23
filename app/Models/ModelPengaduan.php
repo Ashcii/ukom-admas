@@ -9,7 +9,7 @@ class ModelPengaduan extends Model
     protected $DBGroup          = 'default';
     protected $table            = 'pengaduan';
     protected $primaryKey       = 'id_pengaduan';
-    protected $allowedFields    = ['tgl_pengaduan', 'nik', 'isi_laporan', 'lokasi_kejadian', 'foto', 'status'];
+    protected $allowedFields    = ['tgl_pengaduan', 'jam_pengaduan', 'nik', 'judul_laporan', 'isi_laporan', 'lokasi_kejadian', 'foto', 'status'];
 
     public function getPengaduan($id)
     {

@@ -46,6 +46,12 @@ class Pengaduan extends BaseController
     public function tambahPengaduan()
     {
         if (!$this->validate([
+            'judul_laporan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Judul laporan tidak boleh kosong!'
+                ]
+            ],
             'laporan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -72,7 +78,9 @@ class Pengaduan extends BaseController
         $namaFile = date('ymdhis') . '.jpg';
         $data = [
             'tgl_pengaduan' => date('Y-m-d'),
+            'jam_pengaduan' => date('H:i:s'),
             'nik' => session()->get('nik'),
+            'judul_laporan' => $this->request->getVar('judul_laporan'),
             'isi_laporan' => $this->request->getVar('laporan'),
             'lokasi_kejadian' => $this->request->getVar('lokasi'),
             'foto' => $namaFile,
