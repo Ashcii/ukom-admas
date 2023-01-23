@@ -39,6 +39,8 @@ $routes->get('/', 'Pengaduan::index');
 $routes->get('/buat-pengaduan', 'Pengaduan::buatPengaduan', ['filter' => 'masyarakat']);
 $routes->post('/buat-pengaduan/tambah', 'Pengaduan::tambahPengaduan', ['filter' => 'masyarakat']);
 $routes->get('/detail/(:num)', 'Pengaduan::detailPengaduan/$1');
+$routes->post('/detail/edit/(:num)', 'Pengaduan::editPengaduan/$1', ['filter' => 'masyarakat']);
+$routes->post('/detail/hapus/(:num)', 'Pengaduan::hapusPengaduan/$1', ['filter' => 'masyarakat']);
 
 /*
  * --------------------------------------------------------------------

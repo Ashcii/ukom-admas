@@ -21,4 +21,13 @@ class ModelPengaduan extends Model
         $query = $builder->get();
         return $query->getRow();
     }
+
+    public function getPengaduanUser($id, $nik)
+    {
+        $builder = $this->db->table('pengaduan');
+        $builder->where('id_pengaduan', $id);
+        $builder->where('nik', $nik);
+        $query = $builder->get();
+        return $query->getNumRows();
+    }
 }

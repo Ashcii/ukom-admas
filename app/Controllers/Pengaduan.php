@@ -27,10 +27,13 @@ class Pengaduan extends BaseController
 
     public function detailPengaduan($id)
     {
+        $nik = session()->get('nik');
         $data = [
             'title' => 'Detail Pengaduan',
-            'pengaduan' => $this->modelPengaduan->getPengaduan($id)
+            'pengaduan' => $this->modelPengaduan->getPengaduan($id),
+            'pengaduan_user' => $this->modelPengaduan->getPengaduanUser($id, $nik)
         ];
+
         return view('/pengaduan/detail', $data);
     }
 
@@ -93,6 +96,52 @@ class Pengaduan extends BaseController
         $file_foto->move(FCPATH . 'uploads/foto-laporan/', $namaFile);
 
         session()->setFlashdata('pesan', 'Laporan berhasil ditambahkan.');
+        return redirect()->to('/');
+    }
+
+    public function editPengaduan($id)
+    {
+        if (!$this->validate([
+            'judul_laporan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Judul laporan tidak boleh kosong!'
+                ]
+            ],
+            'isi_laporan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Isi laporan tidak boleh kosong!'
+                ]
+            ],
+            'lokasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Lokasi kejadian tidak boleh kosong!'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/detail/' . $id . '')->withInput();
+        }
+
+        $data = [
+            'tgl_pengaduan' => date('Y-m-d'),
+            'jam_pengaduan' => date('H:i:s'),
+            'judul_laporan' => $this->request->getVar('judul_laporan'),
+            'isi_laporan' => $this->request->getVar('isi_laporan'),
+            'lokasi_kejadian' => $this->request->getVar('lokasi')
+        ];
+        $this->modelPengaduan->update($id, $data);
+
+        session()->setFlashdata('pesan', 'Laporan berhasil disunting.');
+        return redirect()->to('/detail/' . $id . '');
+    }
+
+    public function hapusPengaduan($id)
+    {
+        $this->modelPengaduan->delete($id);
+
+        session()->setFlashdata('pesan', 'Laporan pengaduan berhasil dihapus.');
         return redirect()->to('/');
     }
 }
