@@ -43,11 +43,13 @@ class MasyarakatLogin extends BaseController
             } else {
                 // jika password dan user benar maka berikan session dan arahkan ke aplikasi
                 $sessLogin = [
-                    'isLogin' => true,
-                    'nik' => $user['nik'],
-                    'nama' => $user['nama'],
-                    'username' => $user['username'],
-                    'telp' => $user['telp']
+                    'isLogin'       => true,
+                    'id_masyarakat' => $user['id_masyarakat'],
+                    'nik'           => $user['nik'],
+                    'nama'          => $user['nama'],
+                    'username'      => $user['username'],
+                    'telp'          => $user['telp'],
+                    'foto_profil'   => $user['foto_profil']
                 ];
                 session()->set($sessLogin);
                 return redirect()->to('/');
@@ -67,7 +69,8 @@ class MasyarakatLogin extends BaseController
                     'nama_petugas' => $petugas['nama_petugas'],
                     'username' => $petugas['username'],
                     'telp' => $petugas['telp'],
-                    'level' => $petugas['level']
+                    'level' => $petugas['level'],
+                    'foto_profil' => $petugas['foto_profil']
                 ];
 
                 session()->set($sessLogin);
@@ -83,9 +86,10 @@ class MasyarakatLogin extends BaseController
     {
         if (!$this->validate([
             'nik' => [
-                'rules' => 'required',
+                'rules' => 'required|is_unique[masyarakat.nik]',
                 'errors' => [
-                    'required' => 'NIK wajib diisi!'
+                    'required' => 'NIK wajib diisi!',
+                    'is_unique' => 'NIK sudah pernah digunakan!'
                 ]
             ],
             'nama' => [
@@ -101,17 +105,25 @@ class MasyarakatLogin extends BaseController
                 ]
             ],
             'username' => [
-                'rules' => 'required',
+                'rules' => 'required|is_unique[masyarakat.username]',
                 'errors' => [
-                    'required' => 'Username wajib diisi!'
+                    'required' => 'Username wajib diisi!',
+                    'is_unique' => 'Username sudah pernah digunakan!'
                 ]
             ],
             'password' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Password wajib diisi!'
+                    'required' => 'Password wajib diisi!',
                 ]
             ],
+            'ulang_password' => [
+                'rules' => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'Kolom ulangi password wajib diisi!',
+                    'matches'  => 'Password tidak sama dengan kolom ulangi password!'
+                ]
+            ]
         ])) {
             return redirect()->to('/daftar')->withInput();
         }

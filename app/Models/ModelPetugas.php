@@ -8,6 +8,6 @@ class ModelPetugas extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'petugas';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_petugas';
     protected $allowedFields    = ['nama_petugas', 'username', 'password', 'telp', 'level'];
 }

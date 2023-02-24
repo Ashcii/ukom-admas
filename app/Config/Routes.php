@@ -35,12 +35,38 @@ $routes->get('/daftar', 'MasyarakatLogin::daftar');
 $routes->post('/daftar', 'MasyarakatLogin::daftarAuth');
 $routes->get('/logout', 'MasyarakatLogin::logout');
 
+$routes->get('/profil', 'User::profil');
+$routes->post('/profil/edit', 'User::editProfil');
+$routes->post('/profil/ganti-password', 'User::gantiPassword');
+
 $routes->get('/', 'Pengaduan::index');
+$routes->get('/(:num)', 'Pengaduan::profil/$1');
 $routes->get('/buat-pengaduan', 'Pengaduan::buatPengaduan', ['filter' => 'masyarakat']);
 $routes->post('/buat-pengaduan/tambah', 'Pengaduan::tambahPengaduan', ['filter' => 'masyarakat']);
 $routes->get('/detail/(:num)', 'Pengaduan::detailPengaduan/$1');
 $routes->post('/detail/edit/(:num)', 'Pengaduan::editPengaduan/$1', ['filter' => 'masyarakat']);
 $routes->post('/detail/hapus/(:num)', 'Pengaduan::hapusPengaduan/$1', ['filter' => 'masyarakat']);
+
+$routes->get('/laporan-belum', 'Pengaduan::laporanBelum');
+$routes->get('/laporan-belum/xls', 'Pengaduan::xlsBelum');
+$routes->get('/laporan-semua', 'Pengaduan::laporanSemua');
+$routes->get('/laporan-semua/xls', 'Pengaduan::xlsSemua');
+$routes->get('/laporan-proses', 'Pengaduan::laporanProses');
+$routes->get('/laporan-proses/xls', 'Pengaduan::xlsProses');
+$routes->get('/laporan-selesai', 'Pengaduan::laporanSelesai');
+$routes->get('/laporan-selesai/xls', 'Pengaduan::xlsSelesai');
+$routes->post('/detail/ubah-status/(:num)', 'Pengaduan::ubahStatus/$1');
+$routes->post('/detail/tambah-tanggapan/(:num)', 'Pengaduan::tambahTanggapan/$1');
+$routes->post('/detail/hapus-tanggapan/(:num)', 'Pengaduan::hapusTanggapan/$1');
+
+$routes->get('/manajemen-user', 'Admin::manajemenUser');
+$routes->post('/manajemen-user/tambah-masyarakat', 'Admin::tambahMasyarakat');
+$routes->post('/manajemen-user/tambah-petugas', 'Admin::tambahPetugas');
+$routes->post('/manajemen-user/tambah-admin', 'Admin::tambahAdmin');
+$routes->post('/manajemen-user/masyarakat-hapus/(:num)', 'Admin::hapusMasyarakat/$1');
+$routes->post('/manajemen-user/masyarakat-edit/(:num)', 'Admin::editMasyarakat/$1');
+$routes->post('/manajemen-user/petugas-edit/(:num)', 'Admin::editPetugas/$1');
+$routes->post('/manajemen-user/petugas-hapus/(:num)', 'Admin::hapusPetugas/$1');
 
 /*
  * --------------------------------------------------------------------

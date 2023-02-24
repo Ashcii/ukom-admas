@@ -8,6 +8,6 @@ class ModelMasyarakat extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'masyarakat';
-    protected $primaryKey       = 'nik';
-    protected $allowedFields    = ['nik', 'nama', 'username', 'password', 'telp'];
+    protected $primaryKey       = 'id_masyarakat';
+    protected $allowedFields    = ['nik', 'nama', 'username', 'password', 'telp', 'foto_profil'];
 }
